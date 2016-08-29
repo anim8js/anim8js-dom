@@ -1,0 +1,24 @@
+{
+  "name": "anim8js-dom",
+  "version": "1.0.0",
+  "homepage": "http://clickermonkey.github.io/anim8js-dom",
+  "authors": [
+    "Philip Diffenderfer <pdiffenderfer@gmail.com>"
+  ],
+  "description": "anim8 your HTML elements",
+  "main": "build/anim8js-dom.js",
+  "keywords": [
+    "javascript",
+    "animation",
+    "DOM",
+    "HTMLElement"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "src"
+  ]
+}
