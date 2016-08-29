@@ -20,5 +20,8 @@
     "bower_components",
     "test",
     "src"
-  ]
+  ],
+  "dependencies": {
+    "anim8js": "^1.0.0"
+  }
 }

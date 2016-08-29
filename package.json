@@ -29,5 +29,8 @@
     "jsdoc": "^3.4.0",
     "jshint": "^2.9.2",
     "merge-stream": "^1.0.0"
+  },
+  "dependencies": {
+    "anim8js": "^1.0.0"
   }
 }
