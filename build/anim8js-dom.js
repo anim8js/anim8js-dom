@@ -5,8 +5,8 @@
   if (typeof define === 'function' && define.amd) // jshint ignore:line
   {
     // AMD. Register as an anonymous module.
-    define(['anim8'], function() { // jshint ignore:line
-      return factory(root);
+    define(['anim8'], function(anim8) { // jshint ignore:line
+      return factory(anim8, root);
     });
   }
   else if (typeof module === 'object' && module.exports)  // jshint ignore:line
@@ -14,21 +14,23 @@
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
-    module.exports = factory(require('anim8'));  // jshint ignore:line
+    module.exports = factory(require('anim8'), global);  // jshint ignore:line
   }
   else
   {
     // Browser globals (root is window)
-    factory(root.anim8);
+    factory(root.anim8, root);
   }
-}(this, function(anim8)
+}(this, function(anim8, window)
 {
 
   var FastMap = anim8.FastMap;
   var Animator = anim8.Animator;
+  var Factory = anim8.Factory;
   var Class = anim8.Class;
   var Color = anim8.Color;
   var Easings = anim8.Easings;
+  var EasingTypes = anim8.EasingTypes;
   var isFunction = anim8.isFunction;
   var isString = anim8.isString;
   var isNumber = anim8.isNumber;
@@ -117,7 +119,7 @@ var $style = (function()
     str = str.replace(/^O/, '-o');
     str = str.replace(/^Khtml/, '-khtml');
 
-    hyphenated[ key ] = str
+    hyphenated[ key ] = str;
 
     return str;
   };
@@ -234,7 +236,7 @@ var $convert = (function()
     return defaultRate;
   };
 
-  var getFontSize = function(e, notUnit)
+  var getFontSize = function(e, notUnit, relativeTo)
   {
     var fontSize = $style( e, 'fontSize' );
     var parsed = $parseValue( fontSize );
@@ -298,7 +300,7 @@ var $convert = (function()
   {
     px: function(e, relativeTo)
     {
-      return getFontSize( e, 'em' );
+      return getFontSize( e, 'em', relativeTo );
     }
   };
 
@@ -308,7 +310,7 @@ var $convert = (function()
     {
       var htmlElement = document.getElementsByTagName("html")[0];
 
-      return getFontSize( htmlElement, 'rem' );
+      return getFontSize( htmlElement, 'rem', relativeTo );
     }
   };
 
@@ -810,7 +812,7 @@ Properties.backface = (function()
     },
     unset: function(e, anim)
     {
-      e.style[ css ] = null;
+      e.style[ css ] = null;
     }
 
   };
@@ -1381,7 +1383,7 @@ Properties.shadow = (function()
 
       if ( anim.frame.inset )
       {
-        style += inset + ' ';
+        style += 'inset '; // TODO test - fixed but not sure
       }
 
       style += anim.valueOr( 'shadowX', 'shadowPosition', 'x' ) + ' ';
@@ -1498,7 +1500,7 @@ Properties.textShadow = (function()
 
       if ( anim.frame.inset )
       {
-        style += inset + ' ';
+        style += 'inset '; // TODO test - fixed but not sure
       }
 
       style += anim.valueOr( 'textShadowX', 'textShadowPosition', 'x' ) + ' ';
@@ -2187,7 +2189,7 @@ Class.extend( AnimatorDom, Animator,
     {
       if ( attribute in animator.frame && isNumber( animator.frame[ attribute ] ) )
       {
-        return convert( animator.e, animator.value( attribute ), desiredUnit, relativeTo );
+        return $convert( animator.e, animator.value( attribute ), desiredUnit, relativeTo );
       }
 
       request[ attribute ] = desiredUnit;
@@ -2564,8 +2566,8 @@ Class.extend( FactoryDom, Factory,
       attribute.cloneDefault = function() {
         return this.calculator.clone( this.defaultValue );
       };
+    }
 
-}
     return attribute;
   }
 
@@ -2574,13 +2576,13 @@ Class.extend( FactoryDom, Factory,
 var browser =
 {
   IE: (function() {
-    if (!(window.ActiveXObject) && "ActiveXObject" in window) return 11;
-    if (!document.all) return false;
-    if (!document.compatMode) return 5;
-    if (!window.XMLHttpRequest) return 6;
-    if (!document.querySelector) return 7;
-    if (!document.addEventListener) return 8;
-    if (!window.atob) return 9;
+    if (!(window.ActiveXObject) && "ActiveXObject" in window) { return 11; }
+    if (!document.all) { return false; }
+    if (!document.compatMode) { return 5; }
+    if (!window.XMLHttpRequest) { return 6; }
+    if (!document.querySelector) { return 7; }
+    if (!document.addEventListener) { return 8; }
+    if (!window.atob) { return 9; }
     return 10;
   })()
 };
@@ -3019,7 +3021,7 @@ if ( browser.IE && browser.IE <= 8 )
       {
         var computedValue = $style( e, def.property );
 
-        anim.cached[ def.savedAs ] = $convert( e, computedValue, 'px', def.relativeTo ) || e[ def.defaultProperty ];
+        anim.cached[ def.savedAs ] = $convert( e, computedValue, 'px', def.relativeTo ) || e[ def.defaultProperty ];
       }
     },
     cachedOrDefault: function(e, anim, value, attribute, toUnit, relativeTo)
@@ -3342,6 +3344,6 @@ if ( browser.IE && browser.IE < 8 )
     factoryColor:         factoryColor
   };
 
-  return dom;
+  return anim8;
 
 }));
