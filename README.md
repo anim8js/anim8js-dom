@@ -1,6 +1,6 @@
 # anim8js-dom
 
-[anim8](https://github.com/ClickerMonkey/anim8js) your HTML elements
+[anim8](https://github.com/anim8js/anim8js) your HTML elements
 
 anim8js-dom modifies the animation definition and animator functions to include units. Any unit that the property supports in CSS is usable in anim8js - and can handle converting between different units. You can even animate between values with different units. The following functions have changed:
 
@@ -43,7 +43,7 @@ anim8.save('animationName`, {
 
 - Bower: `bower install anim8js-dom`
 - Node: `npm install anim8js-dom`
-- Download: [anim8js-dom](https://raw.githubusercontent.com/ClickerMonkey/anim8js-dom/master/build/anim8js-dom.js)
+- Download: [anim8js-dom](https://raw.githubusercontent.com/anim8js/anim8js-dom/master/build/anim8js-dom.js)
 
 ##### Properties you can anim8
 
@@ -52,9 +52,9 @@ If a (type) isn't beside the property - assume a simple number type.
 `padding` `paddingTop` `paddingLeft` `paddingBottom` `paddingRight`
 `margin` `marginTop` `marginLeft` `marginBottom` `marginRight`
 `borderRadius` `borderTopLeftRadius` `borderTopRightRadius` `borderBottomLeftRadius` `borderBottomRightRadius`
-`borderWidth` `borderTopWidth` `borderRightWidth` `borderBottomWidth` `borderLeftWidth` 
+`borderWidth` `borderTopWidth` `borderRightWidth` `borderBottomWidth` `borderLeftWidth`
 `outlineWidth` `outlineOffset` `textIndent` `borderSpacing` `fontSize` `lineHeight` `letterSpacing`
-`origin`(2d) `originX` `originY` 
+`origin`(2d) `originX` `originY`
 `opacity` `zIndex`
 `width` `minWidth` `maxWidth` `height` `minHeight` `maxHeight`
 `top` `right` `bottom` `left`
