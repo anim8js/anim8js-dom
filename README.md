@@ -53,22 +53,23 @@ If a (type) isn't beside the property - assume a simple number type.
 `margin` `marginTop` `marginLeft` `marginBottom` `marginRight`
 `borderRadius` `borderTopLeftRadius` `borderTopRightRadius` `borderBottomLeftRadius` `borderBottomRightRadius`
 `borderWidth` `borderTopWidth` `borderRightWidth` `borderBottomWidth` `borderLeftWidth`
-`outlineWidth` `outlineOffset` `textIndent` `borderSpacing` `fontSize` `lineHeight` `letterSpacing`
+`outlineWidth` `outlineOffset` `tabSize` `textIndent` `borderSpacing` `fontSize`  `lineHeight` `letterSpacing` `wordSpacing`
 `origin`(2d) `originX` `originY`
 `opacity` `zIndex`
 `width` `minWidth` `maxWidth` `height` `minHeight` `maxHeight`
 `top` `right` `bottom` `left`
-`center`(2d) `centerX` `centerY`
 `blur` `sepia` `brightness` `grayscale` `contrast` `invert` `saturation` `heuRotate`
 `rotate` `rotate3d`(quaternion)
 `translate`(2d) `translateX` `translateY` `translateZ` `translate3d`(3d)
 `scale`(2d) `scaleX` `scaleY` `scaleZ` `scale3d`(3d)
 `skew`(2d) `skewX` `skewY`
 `backface` `visibility`
-`backgroundColor`(rgba) `color`(rgba) `borderTopColor`(rgba) `borderRightColor`(rgba) `borderBottomColor`(rgba) `borderLeftColor`(rgba) `borderColor`(rgba) `outlineColor`(rgba)
+`backgroundColor`(rgba) `color`(rgba) `borderTopColor`(rgba) `borderRightColor`(rgba) `borderBottomColor`(rgba) `borderLeftColor`(rgba) `borderColor`(rgba) `outlineColor`(rgba) `textDecorationColor`(rgba)
 `textShadowX` `textShadowY` `textShadowPosition`(2d) `textShadowBlur` `textShadowColor`(rgba)
 `shadowX` `shadowY` `shadowPosition`(2d) `shadowBlur` `shadowSpread` `shadowColor`(rgba) `shadowInset`
+`scrollLeft` `scrollTop`
 
 ##### Dynamic properties you can anim8
 
+`center`(2d) `centerX` `centerY`
 `angle` `distance` `orbitOffset`(2d)

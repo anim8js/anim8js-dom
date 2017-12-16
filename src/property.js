@@ -18,19 +18,3 @@ function $property(prop)
 
   throw prop + ' is not a valid property';
 }
-
-function unset( e, anim, attr, property, css, clearedValue )
-{
-  if ( attr === true )
-  {
-    e.style[ css ] = clearedValue;
-  }
-  else
-  {
-    delete anim.frame[ attr ];
-
-    property.set( e, anim );
-
-    e.style[ css ] = anim.styles[ css ];
-  }
-}

@@ -1,4 +1,4 @@
-/* anim8js-dom 1.0.1 - anim8 your HTML elements by Philip Diffenderfer */
+/* anim8js-dom 1.0.2 - anim8 your HTML elements by Philip Diffenderfer */
 // UMD (Universal Module Definition)
 (function (root, factory)
 {
@@ -479,10 +479,12 @@ Attributes.borderLeftWidth         = {defaultValue: 0, defaultUnit: 'px'};
 Attributes.outlineWidth            = {defaultValue: 0, defaultUnit: 'px'};
 Attributes.outlineOffset           = {defaultValue: 0};
 Attributes.textIndent              = {defaultValue: 0, defaultUnit: 'px'};
+Attributes.tabSize                 = {defaultValue: 0, defaultUnit: 'px'};
 Attributes.borderSpacing           = {defaultValue: 0, defaultUnit: 'px'};
 Attributes.fontSize                = {defaultValue: 1, defaultUnit: 'em'};
 Attributes.lineHeight              = {defaultValue: 1, defaultUnit: 'em'};
 Attributes.letterSpacing           = {defaultValue: 0, defaultUnit: 'px'};
+Attributes.wordSpacing             = {defaultValue: 0, defaultUnit: 'px'};
 
 Attributes.origin                  = {defaultValue: {x:50, y:50}, defaultUnit: '%', property: 'transformOrigin', calculator: '2d'};
 Attributes.originX                 = {defaultValue: 50, defaultUnit: '%', property: 'transformOrigin'};
@@ -551,6 +553,7 @@ Attributes.borderBottomColor       = {defaultValue: Color(), calculator: 'rgba'}
 Attributes.borderLeftColor         = {defaultValue: Color(), calculator: 'rgba'};
 Attributes.borderColor             = {defaultValue: Color(), calculator: 'rgba'};
 Attributes.outlineColor            = {defaultValue: Color(), calculator: 'rgba'};
+Attributes.textDecorationColor     = {defaultValue: Color(), calculator: 'rgba'};
 
 Attributes.textShadowX             = {defaultValue: 0, defaultUnit: 'px', property: 'textShadow'};
 Attributes.textShadowY             = {defaultValue: 0, defaultUnit: 'px', property: 'textShadow'};
@@ -565,6 +568,9 @@ Attributes.shadowBlur              = {defaultValue: 0, defaultUnit: 'px', proper
 Attributes.shadowSpread            = {defaultValue: 0, defaultUnit: 'px', property: 'shadow'};
 Attributes.shadowColor             = {defaultValue: Color(), calculator: 'rgba', property: 'shadow'};
 Attributes.shadowInset             = {defaultValue: 0, property: 'shadow'};
+
+Attributes.scrollTop               = {defaultValue: 0};
+Attributes.scrollLeft              = {defaultValue: 0};
 
 
 /**
@@ -687,6 +693,34 @@ function factoryColor(nm)
   };
 }
 
+function factoryNumberAttribute(nm)
+{
+  return {
+
+    get: function(e, anim)
+    {
+      if (anim.animating[nm] === false)
+      {
+        var parsed = parseFloat( e[ nm ] );
+
+        if (isFinite(parsed))
+        {
+          anim.frame[nm] = parsed;
+          anim.animating[nm] = true;
+        }
+      }
+    },
+    set: function(e, anim)
+    {
+      anim.attrs[ nm ] = anim.frame[nm];
+    },
+    unset: function(e, anim, attr)
+    {
+      e[ nm ] = null;
+    }
+  };
+}
+
 
 var Properties = {};
 
@@ -729,10 +763,12 @@ Properties.borderLeftWidth          = factory( 'borderLeftWidth' );
 
 Properties.outlineWidth             = factory( 'outlineWidth' );
 Properties.textIndent               = factory( 'textIndent', 'parentWidth' );
+Properties.tabSize                  = factory( 'tabSize', 'parentWidth' );
 Properties.borderSpacing            = factory( 'borderSpacing' );
 Properties.fontSize                 = factory( 'fontSize', 'parentFontSize' );
 Properties.lineHeight               = factory( 'lineHeight', 'fontSize' );
 Properties.letterSpacing            = factory( 'letterSpacing' );
+Properties.wordSpacing              = factory( 'wordSpacing' );
 
 Properties.zIndex                   = factory( 'zIndex' );
 
@@ -744,6 +780,7 @@ Properties.borderBottomColor        = factoryColor( 'borderBottomColor' );
 Properties.borderLeftColor          = factoryColor( 'borderLeftColor' );
 Properties.borderColor              = factoryColor( 'borderColor' );
 Properties.outlineColor             = factoryColor( 'outlineColor' );
+Properties.textDecorationColor      = factoryColor( 'textDecorationColor' );
 
 Properties.minWidth                 = factory( 'minWidth', 'parentWidth' );
 Properties.maxWidth                 = factory( 'maxWidth', 'parentWidth' );
@@ -758,6 +795,8 @@ Properties.right                    = factoryDerivable('right', 'parentWidth', f
 Properties.bottom                   = factoryDerivable('bottom', 'parentHeight', function(e) { return (e.parentNode.scrollHeight - (e.offsetTop + e.offsetHeight)) + 'px'; });
 Properties.left                     = factoryDerivable('left', 'parentWidth', function(e) { return e.offsetLeft + 'px'; });
 
+Properties.scrollTop                = factoryNumberAttribute( 'scrollTop' );
+Properties.scrollLeft               = factoryNumberAttribute( 'scrollLeft' );
 
 Properties.zIndex.set = function(e, anim)
 {
@@ -1791,22 +1830,6 @@ function $property(prop)
   throw prop + ' is not a valid property';
 }
 
-function unset( e, anim, attr, property, css, clearedValue )
-{
-  if ( attr === true )
-  {
-    e.style[ css ] = clearedValue;
-  }
-  else
-  {
-    delete anim.frame[ attr ];
-
-    property.set( e, anim );
-
-    e.style[ css ] = anim.styles[ css ];
-  }
-}
-
 
 /**
  * Instantiates a new AnimatorDom given a subject.
@@ -1826,6 +1849,7 @@ function AnimatorDom(subject)
   this.cached = {};
   this.units = {};
   this.styles = {};
+  this.attributes = {};
   this.styled = false;
   this.stylesUpdated = false;
 }
@@ -1913,6 +1937,11 @@ Class.extend( AnimatorDom, Animator,
          this.subject.style[ prop ] = this.styles[ prop ];
       }
 
+      for (var prop in this.attributes)
+      {
+        this.subject[ prop ] = this.attributes[ prop ];
+      }
+
       for (var attr in this.frame)
       {
         this.updated[ attr ] = false;
@@ -1997,6 +2026,7 @@ Class.extend( AnimatorDom, Animator,
     var updated = {};
     var units = {};
     var styles = {};
+    var attrs = {};
 
     for (var attr in attributes)
     {
@@ -2037,6 +2067,8 @@ Class.extend( AnimatorDom, Animator,
       updated: updated,
 
       styles: styles,
+
+      attributes: attrs,
 
       cached: {},
 
@@ -2088,6 +2120,11 @@ Class.extend( AnimatorDom, Animator,
       this.subject.style[ prop ] = styles[ prop ];
     }
 
+    for (var prop in attrs)
+    {
+      this.subject[ prop ] = attrs[ prop ];
+    }
+
     return this;
   },
 
@@ -2099,6 +2136,7 @@ Class.extend( AnimatorDom, Animator,
   getStyles: function()
   {
     this.styles = {};
+    this.attributes = {};
 
     var applyProperties = {};
 

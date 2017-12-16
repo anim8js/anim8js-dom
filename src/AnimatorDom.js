@@ -17,6 +17,7 @@ function AnimatorDom(subject)
   this.cached = {};
   this.units = {};
   this.styles = {};
+  this.attributes = {};
   this.styled = false;
   this.stylesUpdated = false;
 }
@@ -104,6 +105,11 @@ Class.extend( AnimatorDom, Animator,
          this.subject.style[ prop ] = this.styles[ prop ];
       }
 
+      for (var prop in this.attributes)
+      {
+        this.subject[ prop ] = this.attributes[ prop ];
+      }
+
       for (var attr in this.frame)
       {
         this.updated[ attr ] = false;
@@ -188,6 +194,7 @@ Class.extend( AnimatorDom, Animator,
     var updated = {};
     var units = {};
     var styles = {};
+    var attrs = {};
 
     for (var attr in attributes)
     {
@@ -228,6 +235,8 @@ Class.extend( AnimatorDom, Animator,
       updated: updated,
 
       styles: styles,
+
+      attributes: attrs,
 
       cached: {},
 
@@ -279,6 +288,11 @@ Class.extend( AnimatorDom, Animator,
       this.subject.style[ prop ] = styles[ prop ];
     }
 
+    for (var prop in attrs)
+    {
+      this.subject[ prop ] = attrs[ prop ];
+    }
+
     return this;
   },
 
@@ -290,6 +304,7 @@ Class.extend( AnimatorDom, Animator,
   getStyles: function()
   {
     this.styles = {};
+    this.attributes = {};
 
     var applyProperties = {};
 

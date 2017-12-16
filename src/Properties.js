@@ -40,10 +40,12 @@ Properties.borderLeftWidth          = factory( 'borderLeftWidth' );
 
 Properties.outlineWidth             = factory( 'outlineWidth' );
 Properties.textIndent               = factory( 'textIndent', 'parentWidth' );
+Properties.tabSize                  = factory( 'tabSize', 'parentWidth' );
 Properties.borderSpacing            = factory( 'borderSpacing' );
 Properties.fontSize                 = factory( 'fontSize', 'parentFontSize' );
 Properties.lineHeight               = factory( 'lineHeight', 'fontSize' );
 Properties.letterSpacing            = factory( 'letterSpacing' );
+Properties.wordSpacing              = factory( 'wordSpacing' );
 
 Properties.zIndex                   = factory( 'zIndex' );
 
@@ -55,6 +57,7 @@ Properties.borderBottomColor        = factoryColor( 'borderBottomColor' );
 Properties.borderLeftColor          = factoryColor( 'borderLeftColor' );
 Properties.borderColor              = factoryColor( 'borderColor' );
 Properties.outlineColor             = factoryColor( 'outlineColor' );
+Properties.textDecorationColor      = factoryColor( 'textDecorationColor' );
 
 Properties.minWidth                 = factory( 'minWidth', 'parentWidth' );
 Properties.maxWidth                 = factory( 'maxWidth', 'parentWidth' );
@@ -69,6 +72,8 @@ Properties.right                    = factoryDerivable('right', 'parentWidth', f
 Properties.bottom                   = factoryDerivable('bottom', 'parentHeight', function(e) { return (e.parentNode.scrollHeight - (e.offsetTop + e.offsetHeight)) + 'px'; });
 Properties.left                     = factoryDerivable('left', 'parentWidth', function(e) { return e.offsetLeft + 'px'; });
 
+Properties.scrollTop                = factoryNumberAttribute( 'scrollTop' );
+Properties.scrollLeft               = factoryNumberAttribute( 'scrollLeft' );
 
 Properties.zIndex.set = function(e, anim)
 {

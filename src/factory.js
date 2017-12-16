@@ -96,3 +96,31 @@ function factoryColor(nm)
     }
   };
 }
+
+function factoryNumberAttribute(nm)
+{
+  return {
+
+    get: function(e, anim)
+    {
+      if (anim.animating[nm] === false)
+      {
+        var parsed = parseFloat( e[ nm ] );
+
+        if (isFinite(parsed))
+        {
+          anim.frame[nm] = parsed;
+          anim.animating[nm] = true;
+        }
+      }
+    },
+    set: function(e, anim)
+    {
+      anim.attributes[ nm ] = anim.frame[nm];
+    },
+    unset: function(e, anim, attr)
+    {
+      e[ nm ] = null;
+    }
+  };
+}

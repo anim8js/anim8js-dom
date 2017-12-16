@@ -37,10 +37,12 @@ Attributes.borderLeftWidth         = {defaultValue: 0, defaultUnit: 'px'};
 Attributes.outlineWidth            = {defaultValue: 0, defaultUnit: 'px'};
 Attributes.outlineOffset           = {defaultValue: 0};
 Attributes.textIndent              = {defaultValue: 0, defaultUnit: 'px'};
+Attributes.tabSize                 = {defaultValue: 0, defaultUnit: 'px'};
 Attributes.borderSpacing           = {defaultValue: 0, defaultUnit: 'px'};
 Attributes.fontSize                = {defaultValue: 1, defaultUnit: 'em'};
 Attributes.lineHeight              = {defaultValue: 1, defaultUnit: 'em'};
 Attributes.letterSpacing           = {defaultValue: 0, defaultUnit: 'px'};
+Attributes.wordSpacing             = {defaultValue: 0, defaultUnit: 'px'};
 
 Attributes.origin                  = {defaultValue: {x:50, y:50}, defaultUnit: '%', property: 'transformOrigin', calculator: '2d'};
 Attributes.originX                 = {defaultValue: 50, defaultUnit: '%', property: 'transformOrigin'};
@@ -109,6 +111,7 @@ Attributes.borderBottomColor       = {defaultValue: Color(), calculator: 'rgba'}
 Attributes.borderLeftColor         = {defaultValue: Color(), calculator: 'rgba'};
 Attributes.borderColor             = {defaultValue: Color(), calculator: 'rgba'};
 Attributes.outlineColor            = {defaultValue: Color(), calculator: 'rgba'};
+Attributes.textDecorationColor     = {defaultValue: Color(), calculator: 'rgba'};
 
 Attributes.textShadowX             = {defaultValue: 0, defaultUnit: 'px', property: 'textShadow'};
 Attributes.textShadowY             = {defaultValue: 0, defaultUnit: 'px', property: 'textShadow'};
@@ -123,3 +126,6 @@ Attributes.shadowBlur              = {defaultValue: 0, defaultUnit: 'px', proper
 Attributes.shadowSpread            = {defaultValue: 0, defaultUnit: 'px', property: 'shadow'};
 Attributes.shadowColor             = {defaultValue: Color(), calculator: 'rgba', property: 'shadow'};
 Attributes.shadowInset             = {defaultValue: 0, property: 'shadow'};
+
+Attributes.scrollTop               = {defaultValue: 0};
+Attributes.scrollLeft              = {defaultValue: 0};
