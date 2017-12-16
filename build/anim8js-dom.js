@@ -1,4 +1,4 @@
-/* anim8js-dom 1.0.2 - anim8 your HTML elements by Philip Diffenderfer */
+/* anim8js-dom 1.0.3 - anim8 your HTML elements by Philip Diffenderfer */
 // UMD (Universal Module Definition)
 (function (root, factory)
 {
@@ -712,7 +712,7 @@ function factoryNumberAttribute(nm)
     },
     set: function(e, anim)
     {
-      anim.attrs[ nm ] = anim.frame[nm];
+      anim.attributes[ nm ] = anim.frame[nm];
     },
     unset: function(e, anim, attr)
     {
@@ -1420,7 +1420,7 @@ Properties.shadow = (function()
     {
       var style = '';
 
-      if ( anim.frame.inset )
+      if ( anim.frame.shadowInset )
       {
         style += 'inset '; // TODO test - fixed but not sure
       }

@@ -697,7 +697,7 @@ Properties.shadow = (function()
     {
       var style = '';
 
-      if ( anim.frame.inset )
+      if ( anim.frame.shadowInset )
       {
         style += 'inset '; // TODO test - fixed but not sure
       }
