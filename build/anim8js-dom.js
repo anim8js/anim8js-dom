@@ -1,4 +1,4 @@
-/* anim8js-dom 1.0.3 - anim8 your HTML elements by Philip Diffenderfer */
+/* anim8js-dom 1.0.4 - anim8 your HTML elements by Philip Diffenderfer */
 // UMD (Universal Module Definition)
 (function (root, factory)
 {
@@ -1537,7 +1537,7 @@ Properties.textShadow = (function()
     {
       var style = '';
 
-      if ( anim.frame.inset )
+      if ( anim.frame.shadowInset )
       {
         style += 'inset '; // TODO test - fixed but not sure
       }
