@@ -4,7 +4,7 @@
   if (typeof define === 'function' && define.amd) // jshint ignore:line
   {
     // AMD. Register as an anonymous module.
-    define(['anim8'], function(anim8) { // jshint ignore:line
+    define(['anim8js'], function(anim8) { // jshint ignore:line
       return factory(anim8, root);
     });
   }
@@ -13,7 +13,7 @@
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
-    module.exports = factory(require('anim8'), global);  // jshint ignore:line
+    module.exports = factory(require('anim8js'), global);  // jshint ignore:line
   }
   else
   {

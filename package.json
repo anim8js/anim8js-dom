@@ -1,6 +1,6 @@
 {
   "name": "anim8js-dom",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "anim8 your HTML elements",
   "main": "build/anim8js-dom.js",
   "author": "Philip Diffenderfer",
