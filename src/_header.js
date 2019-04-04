@@ -42,8 +42,18 @@
 
   var $calculator = anim8.calculator;
 
-  var HTMLElement = window.HTMLElement;
-  var document = window.document;
+  var HTMLElement = (this.HTMLElement || window.HTMLElement);
+  var document = (this.document || window.document);
+
+  if (!document)
+  {
+    throw 'document is not defined on this or window, if you are building for node you cannot use the anim8js-dom package. If you are building with webpack make sure to set output.globalObject to "this".';
+  }
+
+  if (!HTMLElement)
+  {
+    throw 'HTMLElement is not defined on this or window, if you are building for node you cannot use the anim8js-dom package. If you are building with webpack make sure to set output.globalObject to "this".';
+  }
 
   function override(target, source)
   {

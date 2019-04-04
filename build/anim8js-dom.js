@@ -1,4 +1,4 @@
-/* anim8js-dom 1.0.6 - anim8 your HTML elements by Philip Diffenderfer */
+/* anim8js-dom 1.0.7 - anim8 your HTML elements by Philip Diffenderfer */
 // UMD (Universal Module Definition)
 (function (root, factory)
 {
@@ -43,8 +43,18 @@
 
   var $calculator = anim8.calculator;
 
-  var HTMLElement = window.HTMLElement;
-  var document = window.document;
+  var HTMLElement = (this.HTMLElement || window.HTMLElement);
+  var document = (this.document || window.document);
+
+  if (!document)
+  {
+    throw 'document is not defined on this or window, if you are building for node you cannot use the anim8js-dom package. If you are building with webpack make sure to set output.globalObject to "this".';
+  }
+
+  if (!HTMLElement)
+  {
+    throw 'HTMLElement is not defined on this or window, if you are building for node you cannot use the anim8js-dom package. If you are building with webpack make sure to set output.globalObject to "this".';
+  }
 
   function override(target, source)
   {
@@ -2614,13 +2624,13 @@ Class.extend( FactoryDom, Factory,
 var browser =
 {
   IE: (function() {
-    if (!(window.ActiveXObject) && "ActiveXObject" in window) { return 11; }
+    if (!(window.ActiveXObject || this.ActiveXObject) && ("ActiveXObject" in window || "ActiveXObject" in this)) { return 11; }
     if (!document.all) { return false; }
     if (!document.compatMode) { return 5; }
-    if (!window.XMLHttpRequest) { return 6; }
+    if (!(window.XMLHttpRequest || this.XMLHttpRequest)) { return 6; }
     if (!document.querySelector) { return 7; }
     if (!document.addEventListener) { return 8; }
-    if (!window.atob) { return 9; }
+    if (!(window.atob || this.atob)) { return 9; }
     return 10;
   })()
 };

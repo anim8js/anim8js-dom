@@ -1,13 +1,13 @@
 var browser =
 {
   IE: (function() {
-    if (!(window.ActiveXObject) && "ActiveXObject" in window) { return 11; }
+    if (!(window.ActiveXObject || this.ActiveXObject) && ("ActiveXObject" in window || "ActiveXObject" in this)) { return 11; }
     if (!document.all) { return false; }
     if (!document.compatMode) { return 5; }
-    if (!window.XMLHttpRequest) { return 6; }
+    if (!(window.XMLHttpRequest || this.XMLHttpRequest)) { return 6; }
     if (!document.querySelector) { return 7; }
     if (!document.addEventListener) { return 8; }
-    if (!window.atob) { return 9; }
+    if (!(window.atob || this.atob)) { return 9; }
     return 10;
   })()
 };
