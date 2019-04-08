@@ -29,4 +29,9 @@ declare module 'anim8js'
   export function m8 (subject: SubjectDom): AnimatorDom;
   export function m8s (subject: SubjectDom): AnimatorsDom;
 
+  export default function anim8 (subject: SubjectDom): AnimatorDom;
+  export default function anim8s (subject: SubjectDom): AnimatorsDom;
+  export default function m8 (subject: SubjectDom): AnimatorDom;
+  export default function m8s (subject: SubjectDom): AnimatorsDom;
+
 }
