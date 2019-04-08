@@ -1,5 +1,5 @@
 
-import { ValueNumber, Animator, Animators, Value2d, ValueQuat, Value3d, ValueRGBA, FastMap, AttributesValues, Input, PathInput, OptionsInput, Factory, Attribute, Easing, EasingMap, Factories, Movie, Sequence, MovieTimeline, MoviePlayer, anim8, anim8s, m8, m8s, Inputs, AnimationDefinition, AnimationOptions } from "anim8js";
+import { ValueNumber, Animator, Animators, Value2d, ValueQuat, Value3d, ValueRGBA, FastMap, AttributesValues, Input, PathInput, OptionsInput, Factory, Attribute, Easing, EasingMap, Factories, Movie, Sequence, MovieTimeline, MoviePlayer, anim8, anim8s, m8, m8s, Inputs, AnimationDefinition, AnimationOptions } from "./types/anim8js";
 
 declare module "anim8js-dom"
 {
