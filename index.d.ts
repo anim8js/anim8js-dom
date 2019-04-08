@@ -1,3 +1,4 @@
+
 import { ValueNumber, Animator, Animators, Value2d, ValueQuat, Value3d, ValueRGBA, FastMap, AttributesValues, Input, PathInput, OptionsInput, Factory, Attribute, Easing, EasingMap, Factories, Movie, Sequence, MovieTimeline, MoviePlayer, anim8, anim8s, m8, m8s, Inputs, AnimationDefinition, AnimationOptions } from "anim8js";
 
 declare module "anim8js-dom"
@@ -237,24 +238,5 @@ declare module "anim8js-dom"
   };
 
   export const dom: Dom;
-
-  interface EasingMap
-  {
-    'cssEase': Easing;
-    'cssEaseIn': Easing;
-    'cssEaseOut': Easing;
-    'cssEaseInOut': Easing;
-    'cssLinear': Easing;
-  }
-
-  interface Factories
-  {
-    'default': FactoryDom;
-  }
-
-  interface AnimationDefinition<A = any>
-  {
-    units?: AnimationOptions<A, Unit>;
-  }
 
 }
