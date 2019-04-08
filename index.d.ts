@@ -175,7 +175,11 @@ declare module "anim8js-dom"
 
   export class FactoryDom<A = AttributesDom, S = SubjectDom> extends Factory<A, S>
   {
-
+    public priority: 5;
+    public elementAttribute: string;
+    public attributes: { [P in keyof A]?: Attribute<A, P> };
+    public cached: { [id: string]: AnimatorDom }
+    public ids: number;
   }
 
   export interface Property
@@ -187,26 +191,6 @@ declare module "anim8js-dom"
   }
 
   export function isElement (x: any): x is SubjectDom;
-
-  export interface Dom
-  {
-    Attributes: { 
-      [P in keyof AttributesDom]: Partial<Attribute<AttributesDom, P>> 
-    };
-    attribute<K extends keyof AttributesDom> (attr: string | Partial<Attribute<AttributesDom, K>> ): Partial<Attribute<AttributesDom, K>>;
-    convert (e: HTMLElement, from: string | number, toUnit: Unit, relativeTo: Unit): number;
-    style (e: HTMLElement, style: string): object | string;
-    parseValue (x: string): false | { value: number, unit?: string };
-    property (prop: string | Property): Property;
-    prefix (prefixes: string[]): string | false;
-    concatenateStyle (anim: AnimatorDom, style: string, value: any): void;
-    setProperty (attr: keyof AttributesDom, property: string): void;
-    unset (e: HTMLElement, anim: AnimatorDom, attr: true | keyof AttributesDom, property: string, css: string, clearedValue: any): void;
-    factory (nm: string, relativeTo: Unit): Property;
-    factoryDerivable (nm: string, relativeTo: Unit, deriver: (e: HTMLElement) => string | number): Property;
-    factoryColor (nm: string): Property;
-    factoryNumberAttribute (nm: string): Property;
-  }
 
   export interface Matrix2d
   {
@@ -232,6 +216,26 @@ declare module "anim8js-dom"
     IE: number;
   };
 
-  export const dom: Dom;
+  export const dom:
+  {
+    Attributes: { 
+      [P in keyof AttributesDom]: Partial<Attribute<AttributesDom, P>> 
+    };
+    attribute<K extends keyof AttributesDom> (attr: string | Partial<Attribute<AttributesDom, K>> ): Partial<Attribute<AttributesDom, K>>;
+
+    convert (e: HTMLElement, from: string | number, toUnit: Unit, relativeTo: Unit): number;
+    style (e: HTMLElement, style: string): object | string;
+    parseValue (x: string): false | { value: number, unit?: string };
+    property (prop: string | Property): Property;
+    prefix (prefixes: string[]): string | false;
+    concatenateStyle (anim: AnimatorDom, style: string, value: any): void;
+    setProperty (attr: keyof AttributesDom, property: string): void;
+    unset (e: HTMLElement, anim: AnimatorDom, attr: true | keyof AttributesDom, property: string, css: string, clearedValue: any): void;
+    
+    factory (nm: string, relativeTo: Unit): Property;
+    factoryDerivable (nm: string, relativeTo: Unit, deriver: (e: HTMLElement) => string | number): Property;
+    factoryColor (nm: string): Property;
+    factoryNumberAttribute (nm: string): Property;
+  };
 
 }

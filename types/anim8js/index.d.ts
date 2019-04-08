@@ -1,10 +1,10 @@
 
 export * from 'anim8js';
-import { Easing, AnimationOptions } from "anim8js";
-import { FactoryDom, SubjectDom, AnimatorDom, AttributesDom, Unit } from "anim8js-dom";
+import { FactoryDom, SubjectDom, AnimatorDom, AttributesDom, Unit, AnimatorsDom } from 'anim8js-dom';
 
-declare module "anim8js"
+declare module 'anim8js'
 {
+
   export interface EasingMap
   {
     'cssEase': Easing;
@@ -25,8 +25,8 @@ declare module "anim8js"
   }
 
   export function anim8 (subject: SubjectDom): AnimatorDom;
-  export function anim8s (subject: SubjectDom): Animators<AttributesDom, SubjectDom>;
+  export function anim8s (subject: SubjectDom): AnimatorsDom;
   export function m8 (subject: SubjectDom): AnimatorDom;
-  export function m8s (subject: SubjectDom): Animators<AttributesDom, SubjectDom>;
+  export function m8s (subject: SubjectDom): AnimatorsDom;
 
 }
