@@ -1,4 +1,5 @@
-import { AnimatorDom, m8 } from 'anim8js-dom';
+import { m8 } from 'anim8js';
+import { AnimatorDom } from 'anim8js-dom';
 
 let el: Element = document.createElement('DIV');
 let an: AnimatorDom = m8(el);

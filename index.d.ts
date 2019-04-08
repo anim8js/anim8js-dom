@@ -178,11 +178,6 @@ declare module "anim8js-dom"
 
   }
 
-  export function anim8 (subject: SubjectDom): AnimatorDom;
-  export function anim8s (subject: SubjectDom): Animators<AttributesDom, SubjectDom>;
-  export function m8 (subject: SubjectDom): AnimatorDom;
-  export function m8s (subject: SubjectDom): Animators<AttributesDom, SubjectDom>;
-
   export interface Property
   {
     get (e: HTMLElement, anim: AnimatorDom): void;

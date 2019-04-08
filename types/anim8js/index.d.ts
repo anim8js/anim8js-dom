@@ -1,7 +1,7 @@
 
 export * from 'anim8js';
 import { Easing, AnimationOptions } from "anim8js";
-import { FactoryDom, Unit } from "anim8js-dom";
+import { FactoryDom, SubjectDom, AnimatorDom, AttributesDom, Unit } from "anim8js-dom";
 
 declare module "anim8js"
 {
@@ -23,4 +23,10 @@ declare module "anim8js"
   {
     units?: AnimationOptions<A, Unit>;
   }
+
+  export function anim8 (subject: SubjectDom): AnimatorDom;
+  export function anim8s (subject: SubjectDom): Animators<AttributesDom, SubjectDom>;
+  export function m8 (subject: SubjectDom): AnimatorDom;
+  export function m8s (subject: SubjectDom): Animators<AttributesDom, SubjectDom>;
+
 }
