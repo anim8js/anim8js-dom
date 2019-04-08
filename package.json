@@ -3,6 +3,7 @@
   "version": "1.0.7",
   "description": "anim8 your HTML elements",
   "main": "build/anim8js-dom.js",
+  "types": "index.d.ts",
   "author": "Philip Diffenderfer",
   "license": "MIT",
   "repository": {
