@@ -1,6 +1,6 @@
 {
   "name": "anim8js-dom",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "anim8 your HTML elements",
   "main": "build/anim8js-dom.js",
   "types": "index.d.ts",

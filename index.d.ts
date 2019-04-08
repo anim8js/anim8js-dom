@@ -6,6 +6,8 @@ declare module "anim8js-dom"
   
   export type SubjectDom = Element | EventTarget | HTMLElement;
 
+  export type SubjectsDom = SubjectDom | SubjectDom[];
+  
   export class AttributesDom
   {
     padding: ValueNumber;
@@ -231,7 +233,7 @@ declare module "anim8js-dom"
     concatenateStyle (anim: AnimatorDom, style: string, value: any): void;
     setProperty (attr: keyof AttributesDom, property: string): void;
     unset (e: HTMLElement, anim: AnimatorDom, attr: true | keyof AttributesDom, property: string, css: string, clearedValue: any): void;
-    
+
     factory (nm: string, relativeTo: Unit): Property;
     factoryDerivable (nm: string, relativeTo: Unit, deriver: (e: HTMLElement) => string | number): Property;
     factoryColor (nm: string): Property;

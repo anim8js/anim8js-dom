@@ -1,6 +1,6 @@
 
 export * from 'anim8js';
-import { FactoryDom, SubjectDom, AnimatorDom, AttributesDom, Unit, AnimatorsDom } from 'anim8js-dom';
+import { FactoryDom, SubjectDom, SubjectsDom, AnimatorDom, AttributesDom, Unit, AnimatorsDom } from 'anim8js-dom';
 
 declare module 'anim8js'
 {
@@ -25,13 +25,11 @@ declare module 'anim8js'
   }
 
   export function anim8 (subject: SubjectDom): AnimatorDom;
-  export function anim8s (subject: SubjectDom): AnimatorsDom;
+  export function anim8s (subject: SubjectsDom): AnimatorsDom;
   export function m8 (subject: SubjectDom): AnimatorDom;
-  export function m8s (subject: SubjectDom): AnimatorsDom;
+  export function m8s (subject: SubjectsDom): AnimatorsDom;
 
-  export default function anim8 (subject: SubjectDom): AnimatorDom;
-  export default function anim8s (subject: SubjectDom): AnimatorsDom;
-  export default function m8 (subject: SubjectDom): AnimatorDom;
-  export default function m8s (subject: SubjectDom): AnimatorsDom;
+  export default function (subject: SubjectDom): AnimatorDom;
+  export default function (subject: SubjectDom[]): AnimatorsDom;
 
 }
