@@ -152,6 +152,7 @@ declare module "anim8js-dom"
     public convertExisting( attr: keyof A, toUnit: Unit): void;
     public convertExistingMany (units?: Units): void;
 
+    public set (attributes: Partial<Inputs<A>>): this;
     public ref<K extends keyof A> (attribute: K, desiredUnit: Unit, relativeTo: Unit): () => A[K];
     public value (attr: keyof A): string;
     public tweenTo<K extends keyof A> (attr: K, target: Input<A[K]>, options?: OptionsInput, cache?: boolean, unit?: Unit): this;
