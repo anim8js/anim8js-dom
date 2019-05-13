@@ -1,4 +1,4 @@
-/* anim8js-dom 1.0.15 - anim8 your HTML elements by Philip Diffenderfer */
+/* anim8js-dom 1.0.17 - anim8 your HTML elements by Philip Diffenderfer */
 // UMD (Universal Module Definition)
 (function (root, factory)
 {
@@ -513,7 +513,7 @@ Attributes.maxHeight               = {defaultValue: 0, defaultUnit: 'px'};
 
 Attributes.angle                   = {defaultValue: 0, property: 'orbit', defaultUnit: 'deg'};
 Attributes.distance                = {defaultValue: 0, property: 'orbit', defaultUnit: 'px'};
-Attributes.orbitOffset             = {defaultValue: {x:50, y:50}, defaultUnit: '%', property: 'orbitOffset', calculator: '2d'};
+Attributes.orbitOffset             = {defaultValue: {x:50, y:50}, defaultUnit: '%', property: 'orbit', calculator: '2d'};
 
 Attributes.top                     = {defaultValue: 0, defaultUnit: 'px'};
 Attributes.right                   = {defaultValue: 0, defaultUnit: 'px'};
